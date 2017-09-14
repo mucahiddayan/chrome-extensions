@@ -13,11 +13,20 @@ chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
     var video  = document.querySelector('video');
     console.log(video,request.func);
-    if(request.func == 'save' && typeof video !== 'undefined'){
+    if(request.func == 'save' && typeof video !== 'undefined' && video !== null){
       console.log(video.currentTime);
-      var label = request.label !== ''?label:document.title;
+      var label = request.label !== '' && typeof request.label !== 'undefined' ? request.label : document.title;
+      console.log(label);
       saveVideo(video,label);
       // return true;
+    }else{
+      console.log('There is no video');
+    }
+    if(request.func == 'open'){
+      console.log(request.url);
+      var vd = document.querySelector('video');
+      console.log(vd);
+      
     }
   });
 
