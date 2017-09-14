@@ -1,13 +1,6 @@
-var btn = document.createElement('button');
-btn.onclick = function(){
-  chrome.runtime.sendMessage({greeting: "hello"}, function(response) {
-    console.log(response.farewell);
-  });
-}
-
-btn.textContent = 'Save';
-
-
+/**
+ * @author Mücahid Dayan
+ */
 
 chrome.runtime.onMessage.addListener(
   function(request, sender, sendResponse) {
@@ -33,8 +26,12 @@ chrome.runtime.onMessage.addListener(
     }
   });
 
-function saveVideo(video,label){
-  
+  /**
+   * 
+   * @param {video} video 
+   * @param {String} label 
+   */
+function saveVideo(video,label){  
   chrome.runtime.sendMessage({func: "saved",time:video.currentTime,url:location.href,label:label}, function(response) {
     console.log(response);
     return true;
