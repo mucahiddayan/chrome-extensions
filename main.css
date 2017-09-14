@@ -1,0 +1,15 @@
+#videos{
+    width:200px;
+    height:200px;
+    margin:10px auto;
+    border:1px solid #333;
+    padding:5px;  
+}
+
+.buttons{
+    text-align: center;
+}
+.buttons *{
+    width: auto;
+    margin: 2px;
+}
