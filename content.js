@@ -25,8 +25,11 @@ chrome.runtime.onMessage.addListener(
     if(request.func == 'open'){
       console.log(request.url);
       var vd = document.querySelector('video');
-      console.log(vd);
-      
+      console.log(vd,request.time);
+      vd.currentTime = request.time;      
+    }
+    if(request.func == 'openW'){
+      location.href = request.url;
     }
   });
 
@@ -50,3 +53,5 @@ function saveVideo(video,label){
     localStorage.setItem('videos',JSON.stringify(videos));
   } */
 }
+
+

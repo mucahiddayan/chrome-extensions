@@ -25,10 +25,19 @@ function loadContent(){
     
     [].map.call(document.querySelectorAll('.video-title'),(a)=>{
       a.addEventListener('click',(e)=>{
-        sende({func:'open',url:e.target.id,time:e.target.dataset.time});
-        chrome.windows.create({'url': e.target.id, 'type': 'popup',width:500,height:500}, function(window) {
-          chrome.extension.getBackgroundPage().console.log(window);
+        // sende({func:'open',url:e.target.id,time:e.target.dataset.time});
+        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) { 
+          var url = tabs[0].url;
+          if(url == e.target.id){
+            sende({func:'open',url:e.target.id,time:e.target.dataset.time});
+          }else{
+            sende({func:'openW',url:e.target.id,time:e.target.dataset.time});
+            /* chrome.windows.create({'url': e.target.id, 'type': 'popup',width:500,height:500}, function(window) {
+              chrome.extension.getBackgroundPage().console.log(window);
+            }); */
+          }          
         });
+        
       });
     });
     chrome.extension.getBackgroundPage().console.log(vids);
